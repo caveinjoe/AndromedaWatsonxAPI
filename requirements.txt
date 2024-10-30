@@ -1,0 +1,6 @@
+pandas
+ibm_watson_machine_learning
+ibm_watson
+sqlalchemy
+ibm_db
+ibm_db_sa
