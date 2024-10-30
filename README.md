@@ -27,7 +27,19 @@ This API allows users to retrieve detailed news information based on a unique do
     ```bash
     pip install -r requirements.txt
     ```
-3. Run the API
+3. Create .env file with the following variables. Replace the placeholder values with your actual values.
+    ```bash
+    # Watson Discovery
+    WD_API_KEY="YOUR_KEY"
+    WD_BASE_URL="YOUR_URL"
+    WD_PROJECT_ID="YOUR_PROJECT_ID"
+
+    # watsonx
+    WX_API_KEY="YOUR_KEY" 
+    WX_BASE_URL="YOUR_URL"
+    WX_PROJECT_ID="YOUR_PROJECT_ID"
+    ```
+4. Run the API
     ```bash
     python host_watsonx_api.py
     ```
