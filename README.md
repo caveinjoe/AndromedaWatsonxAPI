@@ -24,9 +24,13 @@ This API allows users to retrieve detailed news information based on a unique do
     git clone https://github.com/caveinjoe/AndromedaWatsonxAPI.git
     ```
 2. Install Dependencies
+    ```bash
     pip install -r requirements.txt
+    ```
 3. Run the API
+    ```bash
     python host_watsonx_api.py
+    ```
 
 ---
 
