@@ -17,8 +17,6 @@ This API allows users to retrieve detailed news information based on a unique do
 
 ### Prerequisites
 - **Python** 3.x
-- **Flask**: Install with `pip install Flask`
-- **AndromedaNews Module**: A custom module (assumed to be implemented in `news_extraction`)
 
 ### Installation
 1. Clone the repository:
@@ -48,7 +46,7 @@ This API allows users to retrieve detailed news information based on a unique do
 #### Example Request
 
 ```http
-GET /api/extract_news_by_doc_id?doc_id=web_crawl_eca4b5da-bb56-5df4-a8d3-b4f7ff34b1d2
+GET /api/extract_news_by_doc_id?doc_id=document_id_1234
 ```
 
 #### Example Response
@@ -57,7 +55,7 @@ The API returns a JSON array with the following document details:
 
 ```json
 [
-    "web_crawl_eca4b5da-bb56-5df4-a8d3-b4f7ff34b1d2",
+    "document_id_1234",
     "Document Title",
     "This is a brief summary of the document.",
     "Main Headline of the News",
