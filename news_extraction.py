@@ -167,6 +167,11 @@ class AndromedaNews():
         return res
     # output = insights(definition, lst_meta_agg[1][2])
 
+    def doc_info_by_doc_id(self, doc_id):
+        wd_query = f'(document_id:{doc_id})'
+        discovery_article = self._wd_instance.query_docs(wd_query)
+        return discovery_article.get("results")[:][0]
+
     def extract_by_doc_id(self, doc_id):
         wd_query = f'(document_id:{doc_id})'
         discovery_article = self._wd_instance.query_docs(wd_query)
@@ -219,6 +224,8 @@ class AndromedaNews():
 
 
 # a = AndromedaNews()
+# c = a.doc_info_by_doc_id("web_crawl_eca4b5da-bb56-5df4-a8d3-b4f7ff34b1d2")
+# print(c.keys())
 # b = a.extract_by_doc_id("web_crawl_eca4b5da-bb56-5df4-a8d3-b4f7ff34b1d2")
 # print(b[10])
 
