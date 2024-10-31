@@ -170,7 +170,18 @@ class AndromedaNews():
     def doc_info_by_doc_id(self, doc_id):
         wd_query = f'(document_id:{doc_id})'
         discovery_article = self._wd_instance.query_docs(wd_query)
-        return discovery_article.get("results")[:][0]
+        res = discovery_article.get("results")[:][0]
+
+        # Extracting and formatting desired fields
+        doc_info = {
+            "document_id": res.get("document_id", "Field 'document_id' tidak ada pada dokumen ini"),
+            "title": res.get("title", "Field 'title' tidak ada pada dokumen ini"),
+            "text": res.get("text", "Field 'text' tidak ada pada dokumen ini")[:600],  # Truncate text to 200 characters
+            "ingest_datetime": res.get("metadata", {}).get("ingest_datetime", "-"),
+            "URL": res.get("metadata", {}).get("source", {}).get("url", "-")
+        }
+
+        return doc_info
 
     def extract_by_doc_id(self, doc_id):
         wd_query = f'(document_id:{doc_id})'
