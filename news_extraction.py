@@ -167,27 +167,33 @@ class AndromedaNews():
         return res
     # output = insights(definition, lst_meta_agg[1][2])
 
-    def doc_info_by_doc_id(self, doc_id):
+    def doc_info_by_doc_id(self, doc_id, project_id=None, collection_ids=None):
         wd_query = f'(document_id:{doc_id})'
-        discovery_article = self._wd_instance.query_docs(wd_query)
+        discovery_article = self._wd_instance.query_docs(wd_query, project_id, collection_ids)
         res = discovery_article.get("results")[:][0]
 
         # Extracting and formatting desired fields
-        doc_info = {
+        doc_info = { "data": {
             "document_id": res.get("document_id", "Field 'document_id' tidak ada pada dokumen ini"),
             "title": res.get("title", "Field 'title' tidak ada pada dokumen ini"),
-            "text": res.get("text", "Field 'text' tidak ada pada dokumen ini")[:600],  # Truncate text to 200 characters
+            "text": res.get("text", "Field 'text' tidak ada pada dokumen ini")[:600],  
             "ingest_datetime": res.get("metadata", {}).get("ingest_datetime", "-"),
             "URL": res.get("metadata", {}).get("source", {}).get("url", "-")
+            }
         }
 
         return doc_info
 
-    def extract_by_doc_id(self, doc_id):
+    def extract_by_doc_id(self, doc_id, project_id=None, collection_ids=None):
         wd_query = f'(document_id:{doc_id})'
-        discovery_article = self._wd_instance.query_docs(wd_query)
+        discovery_article = self._wd_instance.query_docs(wd_query, project_id, collection_ids)
         lst_meta = self.ai_extraction(discovery_article, 1)
-        return lst_meta[0]
+        doc_analysis = {
+            "data":{
+                "analysis": lst_meta[0][11]
+            }
+        }
+        return doc_analysis
     
     def extract_by_ingest_datetime(self, date):
 

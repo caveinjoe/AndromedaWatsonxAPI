@@ -32,12 +32,14 @@ class WDProcessor():
 
         return discovery
 
-    def query_docs(self, query):
+    def query_docs(self, query, project_id=None, collection_ids=None):
         # recent_date = datetime.now() - timedelta(days=1)
         # date_str = recent_date.strftime('%Y-%m-%dT%H:%M:%SZ')
+        if project_id == "" or project_id is None:
+            project_id = self._project_id
 
         result = self._discovery_instance.query( 
-                        project_id = self._project_id,
+                        project_id = project_id,
                         # collection_ids = ['123456-789-abcd-0000-1234567890'],
                         count = 1000,
                         query=f'{query}', 
